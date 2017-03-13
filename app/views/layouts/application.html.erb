@@ -13,8 +13,10 @@
 <!-- load a css called "container-fluid" from bootstrap -->
       <%= render "common/navbar" %>
       <!-- load the navbar page in common folder-->
+      <%= render "common/flashes" %>
       <%= yield %>
   </div>
   <%= render "common/footer"%>
+
   </body>
 </html>
