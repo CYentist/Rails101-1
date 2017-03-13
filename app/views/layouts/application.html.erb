@@ -9,6 +9,12 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="container-fluid">
+<!-- load a css called "container-fluid" from bootstrap -->
+      <%= render "common/navbar" %>
+      <!-- load the navbar page in common folder-->
+      <%= yield %>
+  </div>
+  <%= render "common/footer"%>
   </body>
 </html>
