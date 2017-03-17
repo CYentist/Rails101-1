@@ -23,6 +23,7 @@ before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
     @group.user = current_user
 
     if @group.save
+      current_user.join!(@group)
       redirect_to groups_path
     else
       render :new
@@ -44,6 +45,30 @@ before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
     flash[:alert] = "Group deleted"
     redirect_to groups_path
   end
+
+  def join
+    @group = Group.find(params[:id])
+
+      if !current_user.is_member_of?(@group)
+        current_user.join!(@group)
+        flash[:notice] = "Joined Successly!"
+      else
+        flash[:warning] = "You already are a member of the group!"
+      end
+    end
+
+    def quit
+      @group = Group.find(params[:id])
+
+      if current_user.is_member_of?(@group)
+        current_user.quit!(@group)
+        flash[:alert] = "Already Quitted!"
+      else
+        flash[:warning] = "You are not a member"
+      end
+    end
+
+
 
   private
 
