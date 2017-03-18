@@ -55,6 +55,8 @@ before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
       else
         flash[:warning] = "You already are a member of the group!"
       end
+
+      redirect_to group_path(@group)
     end
 
     def quit
@@ -66,6 +68,7 @@ before_action :find_group_and_check_permission, only: [:edit, :update, :destroy]
       else
         flash[:warning] = "You are not a member"
       end
+      redirect_to group_path(@group)
     end
 
 
